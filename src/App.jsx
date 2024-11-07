@@ -1,7 +1,13 @@
-export default function App() {
+import React from "react"
+
+const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <main className="w-[360px] h-[379px] bg-[#0B2434] grid place-content-center">
+      <div className="w-[320px] h-[320px] bg-[#F5F5F5] rounded-xl">
+
+      </div>
+    </main>
   )
 }
+
+export default App
