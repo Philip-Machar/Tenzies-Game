@@ -20,8 +20,16 @@ const App = () => {
     setDie(allNewDice());
   };
 
-  const clickedDice = () => {
-
+  const clickedDice = (id) => {
+    setDie((die) => {
+      return die.map(dice => {
+        if (dice.id == id){
+          return {...dice, isHeld: !dice.isHeld}
+        } else {
+          return dice
+        }
+      })
+    })
   };
 
   return (
@@ -31,7 +39,7 @@ const App = () => {
           {
             die.map((dice) => {
               return (
-                <Die key={nanoid()} dice={dice}/>
+                <Die key={nanoid()} dice={dice} clickedDice={clickedDice}/>
               )
             })
           }
