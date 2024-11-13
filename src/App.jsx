@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Die from "./components/Die"
+import { nanoid } from "nanoid";
 
 const App = () => {
   const allNewDice = () => {
@@ -7,7 +8,7 @@ const App = () => {
 
     for(let i=0; i < 10; i++){
       const randomNum = Math.ceil(Math.random() * 6);
-      newDice.push(randomNum)
+      newDice.push({id: nanoid(), value: randomNum, isHeld: false})
     }
 
     return newDice;
@@ -16,7 +17,11 @@ const App = () => {
   const [die, setDie] = useState(allNewDice());
 
   const handleRoll = () => {
-    setDie(prevDie => allNewDice());
+    setDie(allNewDice());
+  };
+
+  const clickedDice = () => {
+
   };
 
   return (
@@ -24,19 +29,19 @@ const App = () => {
       <div className="w-[460px] h-[460px] bg-[#F5F5F5] rounded-xl grid place-content-center relative">
         <div className="grid grid-cols-5 gap-6">
           {
-            die.map((dice, index) => {
+            die.map((dice) => {
               return (
-                <Die key={index} value={dice}/>
+                <Die key={nanoid()} dice={dice}/>
               )
             })
           }
         </div>
-        <buutto 
+        <button 
           onClick={handleRoll}
           className="w-[130px] h-[5-px] bg-[#5035FF] text-white grid place-content-center p-3 rounded-lg text-xl font-karla absolute left-1/2 transform -translate-x-1/2 bottom-16 shadow-lg cursor-pointer"
         >
           Roll
-        </buutto>
+        </button>
       </div>
     </main>
   )
