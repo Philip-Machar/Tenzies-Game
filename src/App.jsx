@@ -17,7 +17,16 @@ const App = () => {
   const [die, setDie] = useState(allNewDice());
 
   const handleRoll = () => {
-    setDie(allNewDice());
+    setDie((prevDie) => {
+      return prevDie.map((dice) => {
+        if (!dice.isHeld){
+          const newDieArray = allNewDice();
+          return newDieArray[Math.ceil(Math.random() * 6)]
+        } else {
+          return dice
+        }
+      })
+    });
   };
 
   const clickedDice = (id) => {
