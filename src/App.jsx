@@ -86,9 +86,9 @@ const App = () => {
           tenzies ?
           <button
             onClick={handleRest}
-            className="w-[130px] h-[50px] bg-[#5035FF] text-white grid place-content-center rounded-lg text-xl font-karla shadow-lg cursor-pointer"
+            className="w-[150px] h-[50px] bg-[#5035FF] text-white grid place-content-center rounded-lg text-xl font-karla shadow-lg cursor-pointer"
           >
-            Reset
+            New Game
           </button> :
           <button
             onClick={handleRoll}
