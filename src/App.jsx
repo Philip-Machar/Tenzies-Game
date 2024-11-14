@@ -30,6 +30,12 @@ const App = () => {
     }
   };
 
+  const handleRest = () => {
+    setDie(allNewDice)
+    setTenzies(false)
+
+  }
+
   const clickedDice = (id) => {
     if (!tenzies){
       setDie((die) => {
@@ -77,12 +83,21 @@ const App = () => {
         </div>
         
         {/* Roll button */}
-        <button
-          onClick={handleRoll}
-          className="w-[130px] h-[50px] bg-[#5035FF] text-white grid place-content-center rounded-lg text-xl font-karla shadow-lg cursor-pointer"
-        >
-          Roll
-        </button>
+        {
+          tenzies ?
+          <button
+            onClick={handleRest}
+            className="w-[130px] h-[50px] bg-[#5035FF] text-white grid place-content-center rounded-lg text-xl font-karla shadow-lg cursor-pointer"
+          >
+            Reset
+          </button> :
+          <button
+            onClick={handleRoll}
+            className="w-[130px] h-[50px] bg-[#5035FF] text-white grid place-content-center rounded-lg text-xl font-karla shadow-lg cursor-pointer"
+          >
+            Roll
+          </button>
+        }
       </div>
     </main>
   );
