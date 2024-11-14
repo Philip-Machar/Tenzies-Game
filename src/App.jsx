@@ -67,6 +67,7 @@ const App = () => {
     <main className="w-[500px] h-[520px] bg-[#0B2434] grid place-content-center shadow-xl">
       <div className="w-[460px] h-[460px] bg-[#F5F5F5] rounded-xl grid place-items-center p-6 relative">
         {tenzies && <Confetti width="500px" height="520px" />}
+        {tenzies && <h1 className="text-5xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2">You Win!!!</h1>}
         {/* Title and description section */}
         <div className="flex flex-col gap-2 text-center px-16">
           <h1 className="text-3xl font-bold">Tenzies</h1>
