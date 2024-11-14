@@ -1,16 +1,14 @@
-import React, { useState } from "react"
-import Die from "./components/Die"
+import React, { useState } from "react";
+import Die from "./components/Die";
 import { nanoid } from "nanoid";
 
 const App = () => {
   const allNewDice = () => {
     const newDice = [];
-
-    for(let i=0; i < 10; i++){
+    for (let i = 0; i < 10; i++) {
       const randomNum = Math.ceil(Math.random() * 6);
-      newDice.push({id: nanoid(), value: randomNum, isHeld: false})
+      newDice.push({ id: nanoid(), value: randomNum, isHeld: false });
     }
-
     return newDice;
   };
 
@@ -19,49 +17,55 @@ const App = () => {
   const handleRoll = () => {
     setDie((prevDie) => {
       return prevDie.map((dice) => {
-        if (!dice.isHeld){
+        if (!dice.isHeld) {
           const newDieArray = allNewDice();
-          return newDieArray[Math.ceil(Math.random() * 6)]
+          return newDieArray[Math.ceil(Math.random() * 9)];
         } else {
-          return dice
+          return dice;
         }
-      })
+      });
     });
   };
 
   const clickedDice = (id) => {
     setDie((die) => {
-      return die.map(dice => {
-        if (dice.id == id){
-          return {...dice, isHeld: !dice.isHeld}
+      return die.map((dice) => {
+        if (dice.id === id) {
+          return { ...dice, isHeld: !dice.isHeld };
         } else {
-          return dice
+          return dice;
         }
-      })
-    })
+      });
+    });
   };
 
   return (
     <main className="w-[500px] h-[520px] bg-[#0B2434] grid place-content-center shadow-xl">
-      <div className="w-[460px] h-[460px] bg-[#F5F5F5] rounded-xl grid place-content-center relative">
-        <div className="grid grid-cols-5 gap-6">
-          {
-            die.map((dice) => {
-              return (
-                <Die key={nanoid()} dice={dice} clickedDice={clickedDice}/>
-              )
-            })
-          }
+      <div className="w-[460px] h-[460px] bg-[#F5F5F5] rounded-xl grid place-items-center p-6 relative">
+        
+        {/* Title and description section */}
+        <div className="flex flex-col gap-2 text-center px-16">
+          <h1 className="text-3xl font-bold">Tenzies</h1>
+          <p className="width-[60%]">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
         </div>
-        <button 
+        
+        {/* Die grid */}
+        <div className="grid grid-cols-5 gap-6">
+          {die.map((dice) => (
+            <Die key={dice.id} dice={dice} clickedDice={clickedDice} />
+          ))}
+        </div>
+        
+        {/* Roll button */}
+        <button
           onClick={handleRoll}
-          className="w-[130px] h-[5-px] bg-[#5035FF] text-white grid place-content-center p-3 rounded-lg text-xl font-karla absolute left-1/2 transform -translate-x-1/2 bottom-16 shadow-lg cursor-pointer"
+          className="w-[130px] h-[50px] bg-[#5035FF] text-white grid place-content-center rounded-lg text-xl font-karla shadow-lg cursor-pointer"
         >
           Roll
         </button>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default App
+export default App;
