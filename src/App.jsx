@@ -16,39 +16,48 @@ const App = () => {
   const [tenzies, setTenzies] = useState(false);
 
   const handleRoll = () => {
-    setDie((prevDie) => {
-      return prevDie.map((dice) => {
-        if (!dice.isHeld) {
-          const newDieArray = allNewDice();
-          return newDieArray[Math.ceil(Math.random() * 9)];
-        } else {
-          return dice;
-        }
+    if (!tenzies){
+      setDie((prevDie) => {
+        return prevDie.map((dice) => {
+          if (!dice.isHeld) {
+            const newDieArray = allNewDice();
+            return newDieArray[Math.ceil(Math.random() * 9)];
+          } else {
+            return dice;
+          }
+        });
       });
-    });
+    }
   };
 
   const clickedDice = (id) => {
-    setDie((die) => {
-      return die.map((dice) => {
-        if (dice.id === id) {
-          return { ...dice, isHeld: !dice.isHeld };
-        } else {
-          return dice;
-        }
+    if (!tenzies){
+      setDie((die) => {
+        return die.map((dice) => {
+          if (dice.id === id) {
+            return { ...dice, isHeld: !dice.isHeld };
+          } else {
+            return dice;
+          }
+        });
       });
-    });
+    }
   };
 
   useEffect(() => {
     const hasWon = () => {
       const allHeld = die.every((dice) => dice.isHeld === true);
-      if (allHeld){
+      const allEqual = die.every((dice) => dice.value === die[0].value)
+      if (allHeld && allEqual){
         setTenzies(true)
       }
     }
     hasWon();
   }, [die])
+
+  if (tenzies){
+    console.log("You won!!!")
+  }
 
   return (
     <main className="w-[500px] h-[520px] bg-[#0B2434] grid place-content-center shadow-xl">
