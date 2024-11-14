@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Die from "./components/Die";
 import { nanoid } from "nanoid";
 
@@ -13,6 +13,7 @@ const App = () => {
   };
 
   const [die, setDie] = useState(allNewDice());
+  const [tenzies, setTenzies] = useState(false);
 
   const handleRoll = () => {
     setDie((prevDie) => {
@@ -38,6 +39,16 @@ const App = () => {
       });
     });
   };
+
+  useEffect(() => {
+    const hasWon = () => {
+      const allHeld = die.every((dice) => dice.isHeld === true);
+      if (allHeld){
+        setTenzies(true)
+      }
+    }
+    hasWon();
+  }, [die])
 
   return (
     <main className="w-[500px] h-[520px] bg-[#0B2434] grid place-content-center shadow-xl">
