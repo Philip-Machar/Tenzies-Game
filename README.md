@@ -4,7 +4,7 @@ A React-based dice game where players roll and hold dice to match values, simila
 
 ![Tenzies Game Screenshot](/public/images/tenzies_screenshot.png)
 
-[Live Demo](your-live-demo-url-here)
+[Live Demo](https://tenzies-game-xi-five.vercel.app/)
 
 ## Description
 
